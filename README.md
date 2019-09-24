@@ -13,6 +13,9 @@ yarn
 ```
 yarn run start -u cbarber_CKFG
 ```
+```
+yarn run start -u cbarber_CKFG -p WithSomeSecretPassword
+```
 
 ## Troubleshooting
 
