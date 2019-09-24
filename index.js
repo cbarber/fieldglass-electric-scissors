@@ -1,12 +1,23 @@
 const puppeteer = require('puppeteer');
+const prompts = require('prompts');
 
 const argv = require('yargs')
     .usage('Usage: $0 -u [text] -p [text]')
-    .demandOption(['u', 'p'])
+    .demandOption(['u'])
     .argv;
-const { u: username, p: password } = argv;
+const username = argv.u;
+let password = argv.p;
 
 (async () => {
+  if (!password) {
+    const { value } = await prompts({
+      type: 'invisible',
+      name: 'value',
+      message: 'Password:',
+    });
+    password = value;
+  }
+
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   
