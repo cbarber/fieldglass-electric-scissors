@@ -1,5 +1,11 @@
 const puppeteer = require('puppeteer');
 
+const argv = require('yargs')
+    .usage('Usage: $0 -u [text] -p [text]')
+    .demandOption(['u', 'p'])
+    .argv;
+const { u: username, p: password } = argv;
+
 (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -11,8 +17,8 @@ const puppeteer = require('puppeteer');
   
   await page.waitForSelector('#login_wrapper > #content_area_new > #primary_content > .entryLoginInput_button > .formLoginButton_new');
 
-  await page.type('#login_wrapper > #content_area_new > #primary_content #usernameId_new', 'username');
-  await page.type('#login_wrapper > #content_area_new > #primary_content #passwordId_new', '*******');
+  await page.type('#login_wrapper > #content_area_new > #primary_content #usernameId_new', username);
+  await page.type('#login_wrapper > #content_area_new > #primary_content #passwordId_new', password);
 
   await page.screenshot({ path: "1_auth.png" });
   

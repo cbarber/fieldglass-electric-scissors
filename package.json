@@ -10,6 +10,7 @@
   "author": "craigb@mojotech.com",
   "license": "ISC",
   "dependencies": {
-    "puppeteer": "^1.20.0"
+    "puppeteer": "^1.20.0",
+    "yargs": "^14.0.0"
   }
 }
